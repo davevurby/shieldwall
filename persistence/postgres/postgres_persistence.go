@@ -53,3 +53,10 @@ func (mkp *MKPostgresPersistence) CreateIdentity(identity mama_keeper.Identity) 
 	_, err := mkp.db.Exec("insert into identity (id, namespace, roles) values ($1, $2, $3) on conflict (id, namespace) do update set roles = $3", identity.Id, identity.Namespace, pq.Array(identity.Roles))
 	return err
 }
+
+func (mkp *MKPostgresPersistence) CreateRole(role mama_keeper.Role) error {
+	log.Printf("Upserting role %s...\n", role.Id)
+
+	_, err := mkp.db.Exec("insert into role (id, namespaces) values ($1, $2) on conflict (id) do update set namespaces = $2", role.Id, pq.Array(role.Namespaces))
+	return err
+}
