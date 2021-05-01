@@ -3,7 +3,7 @@ package postgres
 import (
 	"database/sql"
 	mama_keeper "github.com/davevurby/mama-keeper"
-	"github.com/golang-migrate/migrate"
+	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
