@@ -38,7 +38,7 @@ func CreateMKPostgresPersistence(connString string) (*MKPostgresPersistence, err
 
 func (mkp *MKPostgresPersistence) runMigrations() error {
 	m, err := migrate.NewWithDatabaseInstance(
-		"file://migrations",
+		"github://davevurby/mama-keeper/persistence/postgres/migrations",
 		"postgres", mkp.driver)
 	if err != nil {
 		log.Fatal(err)
