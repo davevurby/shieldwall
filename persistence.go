@@ -7,6 +7,3 @@ type MamaKeeperPersistence interface {
 	IsPermitted(subject string, namespace string, object string, effect string) (bool, error)
 	Close() error
 }
-
-type Blabla interface {
-}
