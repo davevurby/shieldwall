@@ -24,21 +24,25 @@ func CreateMKPostgresPersistence(connString string) (*MKPostgresPersistence, err
 
 	driver, err := postgres.WithInstance(db, &postgres.Config{})
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	return &MKPostgresPersistence{db: db, driver: driver}, nil
 }
 
-func (mkp *MKPostgresPersistence) RunMigrations(n int) error {
+func (mkp *MKPostgresPersistence) RunMigrations() error {
 	m, err := migrate.NewWithDatabaseInstance(
 		"github://davevurby:davevurby@davevurby/mama-keeper/persistence/postgres/migrations",
 		"postgres", mkp.driver)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	return m.Steps(n)
+	if err := m.Up(); err != nil && err.Error() != "no change" {
+		return err
+	}
+
+	return nil
 }
 
 func (mkp *MKPostgresPersistence) CreateIdentity(identity mama_keeper.Identity) error {

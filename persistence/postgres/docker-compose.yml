@@ -1,14 +1,6 @@
 version: '3.8'
 
 services:
-  nats:
-    image: nats
-    networks:
-      - mk
-    ports:
-      - 4222:4222
-      - 8222:8222
-
   postgres:
     image: postgres
     networks:
