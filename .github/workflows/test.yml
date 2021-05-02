@@ -6,7 +6,6 @@ jobs:
   test:
     name: Running tests
     timeout-minutes: 5
-    container: golang:latest
 
     strategy:
       matrix:
@@ -16,21 +15,21 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     services:
-#      postgres:
-#        image: postgres:latest
-#        ports:
-#          - 5432:5432
-#        env:
-#          POSTGRES_PASSWORD: 'postgres'
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
-      nats:
-        image: nats:latest
+      postgres:
+        image: postgres:latest
         ports:
-          - 4222:4222
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: 'postgres'
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+#      nats:
+#        image: nats:latest
+#        ports:
+#          - 4222:4222
 
     steps:
       - name: Install Go
