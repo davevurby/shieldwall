@@ -6,6 +6,7 @@ jobs:
   test:
     name: Running tests
     timeout-minutes: 5
+    container: golang:latest
 
     strategy:
       matrix:
