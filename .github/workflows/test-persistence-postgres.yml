@@ -1,0 +1,36 @@
+on: [pull_request]
+
+name: Test persistence with Postgres
+
+jobs:
+  test-ubuntu:
+    name: Tests on Ubuntu
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    strategy:
+      matrix:
+        go-version: [ 1.16.x ]
+
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test
+        run: go test ./persistence/postgres/...
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: 'postgres'
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
