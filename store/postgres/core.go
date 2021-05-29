@@ -34,7 +34,7 @@ func NewPgStoreFromDB(db *sql.DB) (*PgStore, error) {
 
 func (s *PgStore) RunMigrations() error {
 	m, err := migrate.NewWithDatabaseInstance(
-		"github://davevurby:davevurby@davevurby/mama-keeper/persistence/postgres/migrations",
+		"github://davevurby:davevurby@davevurby/mama-keeper/store/postgres/migrations",
 		"postgres", s.driver)
 	if err != nil {
 		return err
