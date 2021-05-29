@@ -1,10 +1,10 @@
-# Mama Keeper
+# Shield wall
 
-[![codecov](https://codecov.io/gh/davevurby/mama-keeper/branch/main/graph/badge.svg?token=SKF2DP364R)](https://codecov.io/gh/davevurby/mama-keeper)
+[![codecov](https://codecov.io/gh/davevurby/shieldwall/branch/main/graph/badge.svg?token=SKF2DP364R)](https://codecov.io/gh/davevurby/shieldwall)
 
-**Mama keeper is still in progress, it is REALLY NOT READY to be used in production!!**
+**Shield wall is still in progress, it is REALLY NOT READY to be used in production!!**
 
-Mama keeper is a package handling policies, roles, identities and tenants (domains). Its goal is to handle RBAC in multitenant systems out of the box with a very simple queries, that allows MK remain lightweight even with millions of users
+Shield wall is a package handling policies, roles, identities and tenants (domains). Its goal is to handle RBAC in multitenant systems out of the box with a very simple queries, that allows Shield wall remain lightweight even with millions of users
 
 It can be used as a dependency for any Golang project or as a standalone server with several interfaces like REST or gRPC (soon).
 
@@ -27,7 +27,6 @@ It can be used as a dependency for any Golang project or as a standalone server 
 - [x] Use as Golang dependency
 - [ ] REST server
 - [ ] gRPC server
-- [ ] NATS server
 
 ## Getting started
 

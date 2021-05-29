@@ -3,19 +3,19 @@ package postgres
 import (
 	"testing"
 
-	mama_keeper "github.com/davevurby/mama-keeper"
+	"github.com/davevurby/shieldwall"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPgStore_PutRole(t *testing.T) {
 	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
-	err := store.PutRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins"}})
+	err := store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins"}})
 	if err != nil {
 		t.Error(err)
 	}
 
-	err = store.PutRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins", "mamakeeper.io/companies/*/users"}})
+	err = store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}})
 	if err != nil {
 		t.Error(err)
 	}
@@ -42,5 +42,5 @@ func TestPgStore_PutRole(t *testing.T) {
 	}
 
 	assert.Equal(t, id, "test_role", "it should return id as 'role_id'")
-	assert.Equal(t, namespaces, []string{"mamakeeper.io/users", "mamakeeper.io/admins", "mamakeeper.io/companies/*/users"}, "it should return namespaces as 'mamakeeper.io/users', 'mamakeeper.io/admins' and 'mamakeeper.io/companies/*/users'")
+	assert.Equal(t, namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwallio/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
 }

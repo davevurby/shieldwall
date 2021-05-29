@@ -1,4 +1,4 @@
-module github.com/davevurby/mama-keeper
+module github.com/davevurby/shieldwall
 
 go 1.16
 

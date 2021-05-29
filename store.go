@@ -1,4 +1,4 @@
-package mamakeeper
+package shieldwall
 
 type Store interface {
 	// Close closes a connection to a store

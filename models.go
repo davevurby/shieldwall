@@ -1,4 +1,4 @@
-package mamakeeper
+package shieldwall
 
 type Identity struct {
 	Id        string
