@@ -32,10 +32,10 @@ func NewPgStoreFromDB(db *sql.DB) (*PgStore, error) {
 	return &PgStore{db: db, driver: driver}, nil
 }
 
-func (mkp *PgStore) RunMigrations() error {
+func (s *PgStore) RunMigrations() error {
 	m, err := migrate.NewWithDatabaseInstance(
 		"github://davevurby:davevurby@davevurby/mama-keeper/persistence/postgres/migrations",
-		"postgres", mkp.driver)
+		"postgres", s.driver)
 	if err != nil {
 		return err
 	}
@@ -47,6 +47,6 @@ func (mkp *PgStore) RunMigrations() error {
 	return nil
 }
 
-func (mkp *PgStore) Close() error {
-	return mkp.db.Close()
+func (s *PgStore) Close() error {
+	return s.db.Close()
 }

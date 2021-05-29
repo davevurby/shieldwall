@@ -8,19 +8,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPgStore_CreateRole(t *testing.T) {
-	mkp, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
-	err := mkp.CreateRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins"}})
+func TestPgStore_PutRole(t *testing.T) {
+	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+	err := store.PutRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins"}})
 	if err != nil {
 		t.Error(err)
 	}
 
-	err = mkp.CreateRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins", "mamakeeper.io/companies/*/users"}})
+	err = store.PutRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins", "mamakeeper.io/companies/*/users"}})
 	if err != nil {
 		t.Error(err)
 	}
 
-	rows, err := mkp.db.Query("select * from role where id = $1", "test_role")
+	rows, err := store.db.Query("select * from role where id = $1", "test_role")
 	if err != nil {
 		t.Error(err)
 	}
