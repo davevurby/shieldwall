@@ -42,5 +42,5 @@ func TestPgStore_PutRole(t *testing.T) {
 	}
 
 	assert.Equal(t, id, "test_role", "it should return id as 'role_id'")
-	assert.Equal(t, namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwallio/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
+	assert.Equal(t, namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
 }
