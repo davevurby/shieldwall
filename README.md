@@ -2,17 +2,17 @@
 
 [![codecov](https://codecov.io/gh/davevurby/shieldwall/branch/main/graph/badge.svg?token=SKF2DP364R)](https://codecov.io/gh/davevurby/shieldwall)
 
-**Shield wall is still in progress, it is REALLY NOT READY to be used in production!!**
+**Shieldwall is still in progress, it is NOT READY to be used in production!!**
 
-Shield wall is a package handling policies, roles, identities and tenants (domains). Its goal is to handle RBAC in multitenant systems out of the box with a very simple queries, that allows Shield wall remain lightweight even with millions of users
+Shieldwall is GO package, that can handle policies, roles and identities in a single or multiple tenant/domain systems (called namespaces). Its goal is to handle the best performance with very simple queries onto your desired storage system.
 
-It can be used as a dependency for any Golang project or as a standalone server with several interfaces like REST or gRPC (soon).
+As this is only a golang package, you have to create a server, that would handle requests as well. If you don't want to create your own server, you can use our own [open-source server solution](https://github.com/davevurby/shieldwall-server)
 
 ## Features
 
-- [x] Creating roles and restrict tenants, to which it could be assigned (with regex matching)
-- [x] Managing identities (users, services, admins), their roles and domains
-- [x] Creating policy for an identity or a role matching a namespace
+- [x] Create a role and restrict namespaces, to which the role could be assigned (with regex matching)
+- [x] Manage identities (users, services, admins), their roles and namespaces
+- [x] Create a policy for an identity or a role that is matching a namespace
 - [x] Very SIMPLE way how to check if an identity is permitted to do an action (via single query)
 
 ## Multiple storage options
@@ -20,12 +20,16 @@ It can be used as a dependency for any Golang project or as a standalone server 
 - [x] PostgreSQL
 - [ ] MySQL / MariaDB
 - [ ] CrockroachDB
-- [ ] Redis
+
+## Caching options
+
+- [ ] Redis caching
+- [ ] Memcached caching
 
 ## Multiple interfaces options
 
 - [x] Use as Golang dependency
-- [ ] REST server
+- [x] [REST server](https://github.com/davevurby/shieldwall-server)
 - [ ] gRPC server
 
 ## Getting started
