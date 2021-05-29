@@ -28,7 +28,7 @@ func (s *PgStore) GetRole(id string) (*shieldwall.Role, error) {
 
 func (s *PgStore) GetRoles() ([]shieldwall.Role, error) {
 	query := `
-		select r.id, r.namespaces from role
+		select r.id, r.namespaces from role r
 	`
 
 	rows, err := s.db.Query(query)
