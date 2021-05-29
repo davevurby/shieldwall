@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMKPostgresPersistence_CreateRole(t *testing.T) {
-	mkp, _ := NewPostgresPersistence("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+func TestPgStore_CreateRole(t *testing.T) {
+	mkp, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
 	err := mkp.CreateRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins"}})
 	if err != nil {
 		t.Error(err)

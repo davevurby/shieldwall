@@ -1,6 +1,6 @@
-package mama_keeper
+package mamakeeper
 
-type MamaKeeperPersistence interface {
+type Store interface {
 	CreateIdentity(identity Identity) error
 	CreateRole(role Role) error
 	CreatePolicy(policy Policy) error

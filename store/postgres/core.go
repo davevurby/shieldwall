@@ -9,30 +9,30 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/source/github"
 )
 
-type MKPostgresPersistence struct {
+type PgStore struct {
 	db     *sql.DB
 	driver database.Driver
 }
 
-func NewPostgresPersistence(connString string) (*MKPostgresPersistence, error) {
+func NewPgStoreFromConnString(connString string) (*PgStore, error) {
 	db, err := sql.Open("postgres", connString)
 	if err != nil {
 		return nil, err
 	}
 
-	return NewPostgresPersistenceWithDB(db)
+	return NewPgStoreFromDB(db)
 }
 
-func NewPostgresPersistenceWithDB(db *sql.DB) (*MKPostgresPersistence, error) {
+func NewPgStoreFromDB(db *sql.DB) (*PgStore, error) {
 	driver, err := postgres.WithInstance(db, &postgres.Config{})
 	if err != nil {
 		return nil, err
 	}
 
-	return &MKPostgresPersistence{db: db, driver: driver}, nil
+	return &PgStore{db: db, driver: driver}, nil
 }
 
-func (mkp *MKPostgresPersistence) RunMigrations() error {
+func (mkp *PgStore) RunMigrations() error {
 	m, err := migrate.NewWithDatabaseInstance(
 		"github://davevurby:davevurby@davevurby/mama-keeper/persistence/postgres/migrations",
 		"postgres", mkp.driver)
@@ -47,6 +47,6 @@ func (mkp *MKPostgresPersistence) RunMigrations() error {
 	return nil
 }
 
-func (mkp *MKPostgresPersistence) Close() error {
+func (mkp *PgStore) Close() error {
 	return mkp.db.Close()
 }

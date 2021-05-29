@@ -1,4 +1,4 @@
-package mama_keeper
+package mamakeeper
 
 type Identity struct {
 	Id        string
