@@ -7,17 +7,6 @@ import (
 	"github.com/lib/pq"
 )
 
-func (s *PgStore) GetRoles() ([]shieldwall.Role, error) {
-	return nil, nil
-}
-
-func (s *PgStore) PutRole(role shieldwall.Role) error {
-	log.Printf("Upserting role %s...\n", role.Id)
-
-	_, err := s.db.Exec("insert into role (id, namespaces) values ($1, $2) on conflict (id) do update set namespaces = $2", role.Id, pq.Array(role.Namespaces))
-	return err
-}
-
 func (s *PgStore) CreateIdentity(identity shieldwall.Identity) error {
 	log.Printf("Upserting identity %s...\n", identity.Id)
 
