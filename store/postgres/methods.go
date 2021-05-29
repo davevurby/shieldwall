@@ -7,6 +7,10 @@ import (
 	"github.com/lib/pq"
 )
 
+func (s *PgStore) GetRoles() ([]mama_keeper.Role, error) {
+	return nil, nil
+}
+
 func (s *PgStore) PutRole(role mama_keeper.Role) error {
 	log.Printf("Upserting role %s...\n", role.Id)
 
