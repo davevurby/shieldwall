@@ -1,29 +1,15 @@
 package postgres
 
 import (
+	"testing"
+
 	mama_keeper "github.com/davevurby/mama-keeper"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
-func TestCreateMKPostgresPersistence(t *testing.T) {
-	_, err := CreateMKPostgresPersistence("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
-	if err != nil {
-		t.Error(err)
-	}
-}
-
-func TestMKPostgresPersistence_RunMigrations(t *testing.T) {
-	mkp, _ := CreateMKPostgresPersistence("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
-	err := mkp.RunMigrations()
-	if err != nil {
-		t.Error(err)
-	}
-}
-
 func TestMKPostgresPersistence_CreateRole(t *testing.T) {
-	mkp, _ := CreateMKPostgresPersistence("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+	mkp, _ := NewPostgresPersistence("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
 	err := mkp.CreateRole(mama_keeper.Role{Id: "test_role", Namespaces: []string{"mamakeeper.io/users", "mamakeeper.io/admins"}})
 	if err != nil {
 		t.Error(err)

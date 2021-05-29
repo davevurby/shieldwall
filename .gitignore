@@ -19,3 +19,6 @@
 
 # Test
 coverage.out
+/data
+
+/vendor
