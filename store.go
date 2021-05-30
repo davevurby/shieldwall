@@ -9,7 +9,8 @@ type Store interface {
 	PutRole(role Role) error
 	DeleteRole(id string) error
 
-	CreateIdentity(identity Identity) error
-	CreatePolicy(policy Policy) error
+	PutIdentity(identity Identity) error
+
+	PutPolicy(policy Policy) error
 	IsPermitted(subject string, namespace string, object string, effect string) (bool, error)
 }
