@@ -24,6 +24,17 @@ func TestPgStore_GetRole(t *testing.T) {
 	assert.Equal(t, role.Namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
 }
 
+func TestPgStore_GetRoleNil(t *testing.T) {
+	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+
+	role, err := store.GetRole("test_role_not_found")
+	if err != nil {
+		t.Error(err)
+	}
+
+	assert.Equal(t, role, nil, "it should return nil")
+}
+
 func TestPgStore_GetRoles(t *testing.T) {
 	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
 	err := store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}})
@@ -76,3 +87,19 @@ func TestPgStore_PutRole(t *testing.T) {
 	assert.Equal(t, id, "test_role", "it should return id as 'role_id'")
 	assert.Equal(t, namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
 }
+
+// func TestPgStore_DeleteRole(t *testing.T) {
+// 	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+// 	err := store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}})
+// 	if err != nil {
+// 		t.Error(err)
+// 	}
+
+// 	err = store.DeleteRole("test_role")
+// 	if err != nil {
+// 		t.Error(err)
+// 	}
+
+// 	assert.Equal(t, role.Id, "test_role", "it should return id as 'test_role'")
+// 	assert.Equal(t, role.Namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
+// }

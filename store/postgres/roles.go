@@ -17,7 +17,10 @@ func (s *PgStore) GetRole(id string) (*shieldwall.Role, error) {
 		return nil, err
 	}
 
-	rows.Next()
+	if rows.Next() == false {
+		return nil, nil
+	}
+
 	var role shieldwall.Role
 	if err = rows.Scan(&role.Id, pq.Array(&role.Namespaces)); err != nil {
 		return nil, err
