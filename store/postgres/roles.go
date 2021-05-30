@@ -57,3 +57,8 @@ func (s *PgStore) PutRole(role shieldwall.Role) error {
 	_, err := s.db.Exec("insert into role (id, namespaces) values ($1, $2) on conflict (id) do update set namespaces = $2", role.Id, pq.Array(role.Namespaces))
 	return err
 }
+
+func (s *PgStore) DeleteRole(id string) error {
+	_, err := s.db.Exec("delete from role where id = $1", id)
+	return err
+}

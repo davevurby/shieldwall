@@ -7,6 +7,7 @@ type Store interface {
 	GetRole(id string) (*Role, error)
 	GetRoles() ([]Role, error)
 	PutRole(role Role) error
+	DeleteRole(id string) error
 
 	CreateIdentity(identity Identity) error
 	CreatePolicy(policy Policy) error
