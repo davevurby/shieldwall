@@ -17,7 +17,7 @@ func (s *PgStore) GetRole(id string) (*shieldwall.Role, error) {
 		return nil, err
 	}
 
-	if rows.Next() == false {
+	if !rows.Next() {
 		return nil, nil
 	}
 
