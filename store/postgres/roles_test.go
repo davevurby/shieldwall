@@ -90,18 +90,24 @@ func TestPgStore_PutRole(t *testing.T) {
 	assert.Equal(t, namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
 }
 
-// func TestPgStore_DeleteRole(t *testing.T) {
-// 	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
-// 	err := store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}})
-// 	if err != nil {
-// 		t.Error(err)
-// 	}
+func TestPgStore_DeleteRole(t *testing.T) {
+	store, _ := NewPgStoreFromConnString("postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable")
+	err := store.PutRole(shieldwall.Role{Id: "test_role", Namespaces: []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}})
+	if err != nil {
+		t.Error(err)
+	}
 
-// 	err = store.DeleteRole("test_role")
-// 	if err != nil {
-// 		t.Error(err)
-// 	}
+	err = store.DeleteRole("test_role")
+	if err != nil {
+		t.Error(err)
+	}
 
-// 	assert.Equal(t, role.Id, "test_role", "it should return id as 'test_role'")
-// 	assert.Equal(t, role.Namespaces, []string{"shieldwall.io/users", "shieldwall.io/admins", "shieldwall.io/companies/*/users"}, "it should return namespaces as 'shieldwall.io/users', 'shieldwall.io/admins' and 'shieldwall.io/companies/*/users'")
-// }
+	role, err := store.GetRole("test_role")
+	if err != nil {
+		t.Error(err)
+	}
+
+	if role != nil {
+		t.Error("role should be nil")
+	}
+}
