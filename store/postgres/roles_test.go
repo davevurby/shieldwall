@@ -32,7 +32,9 @@ func TestPgStore_GetRoleNil(t *testing.T) {
 		t.Error(err)
 	}
 
-	assert.Equal(t, role, nil, "it should return nil")
+	if role != nil {
+		t.Error("role should be nil")
+	}
 }
 
 func TestPgStore_GetRoles(t *testing.T) {
