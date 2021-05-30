@@ -1,6 +1,6 @@
 # Shield wall
 
-[![codecov](https://codecov.io/gh/davevurby/shieldwall/branch/main/graph/badge.svg?token=SKF2DP364R)](https://codecov.io/gh/davevurby/shieldwall)
+[![Coverage Status](https://coveralls.io/repos/github/davevurby/shieldwall/badge.svg?branch=main)](https://coveralls.io/github/davevurby/shieldwall?branch=main)
 
 **Shieldwall is still in progress, it is NOT READY to be used in production!!**
 
