@@ -33,7 +33,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run coverage
         run: |
           go get -u github.com/jandelgado/gcov2lcov
