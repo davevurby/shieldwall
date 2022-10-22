@@ -19,7 +19,7 @@ As this is only a golang package, you have to create a server, that would handle
 
 - [x] PostgreSQL
 - [ ] MySQL / MariaDB
-- [ ] CrockroachDB
+- [ ] CockroachDB
 
 ## Caching options
 
