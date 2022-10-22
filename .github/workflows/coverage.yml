@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        go-version: [ 1.16.x ]
+        go-version: [ 1.19.x ]
 
     services:
       postgres:
@@ -32,17 +32,22 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
+          cache: true
+
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Run coverage
         run: |
           go get -u github.com/jandelgado/gcov2lcov
           go test ./... -race -coverprofile=coverage.out -covermode=atomic && gcov2lcov -infile=coverage.out -outfile=coverage.lcov
+
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./coverage.lcov
+          
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
