@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/golang-migrate/migrate/v4 v4.14.1
 	github.com/lib/pq v1.10.7
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.2
 )
 
 require (
